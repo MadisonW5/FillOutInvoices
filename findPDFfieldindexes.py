@@ -3,7 +3,7 @@ from pathlib import Path
 import fitz  # PyMuPDF
 
 document_dir = Path(r"C:\Users\GreenhouseProduction\Downloads\us customs test")
-pdf_in  = document_dir / "Blank Template copy - Copy.pdf"
+pdf_in  = document_dir / "Blank Template copy - final.pdf"
 pdf_out = document_dir / "output.pdf"
 
 with fitz.open(pdf_in) as doc:
