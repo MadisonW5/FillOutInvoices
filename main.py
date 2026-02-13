@@ -185,12 +185,10 @@ for sheet in pd.ExcelFile(excel_path).sheet_names:
         if page_num == 0:
                 start_at = 145 #for the description field on page one
                 end_at = 150
-                #add_to_tariff = 6 #number of fields between description and tariff number fields
 
         elif page_num == 1:
                 start_at = 247 #for description field on page two
                 end_at = 265
-                #add_to_tariff = 19 #number of fields between description and tariff number fields
 
         widget_counter = 0 #resets the widget counter for each page
 
