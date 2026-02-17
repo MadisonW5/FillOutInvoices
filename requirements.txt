@@ -1,4 +1,4 @@
-PyMuPDF>=1.32
-pandas>=2.2
-streamlit
+PyMuPDF
+pandas
+streamlit>=1.32
 openpyxl
