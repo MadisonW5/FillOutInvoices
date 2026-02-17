@@ -1,18 +1,18 @@
-def fill_out_US_shipping_invoices(excel_file_path,folder_path):
+def fill_out_US_shipping_invoices(uploaded_excel):
     from pathlib import Path
     import fitz
-
     from datetime import datetime
     import pandas as pd
+    import io
 
-    #EDIT FOR EACH NEW EXCEL SHEET
-    excel_path = Path(excel_file_path)
-    #excel_path = r"C:\Users\GreenhouseProduction\Downloads\us customs test\us customs page one.xlsx"
-
-    for sheet in pd.ExcelFile(excel_path).sheet_names:
+    template_path = Path("Blank Template copy - final.pdf")
+    invoices = []
+    excel_path = uploaded_excel
+    xls = pd.ExcelFile(excel_path)
+    
+    for sheet in xls.sheet_names:
     #read everything as strings so nothing becomes NaN or floats
-        df_raw = pd.read_excel(excel_path, sheet_name=sheet, header=None, dtype=str, keep_default_na=False, engine="openpyxl") #change sheet_name to variable with loop later
-
+        df_raw = pd.read_excel(xls, sheet_name=sheet, header=None, dtype=str, keep_default_na=False, engine="openpyxl")
         #shipping details grabbed from the excel sheet
         filename = df_raw.iat[1, 4]
         name = df_raw.iat[1, 2]
@@ -31,18 +31,18 @@ def fill_out_US_shipping_invoices(excel_file_path,folder_path):
             }
 
         #EDIT FOR EACH NEW FOLDER MADE
-        document_dir = Path(folder_path)
-        #document_dir = Path(r"C:\Users\GreenhouseProduction\Downloads\us customs test")
+        #document_dir = Path(folder_path)
         #EDIT IF THE FILE NAME OF YOUR BLANK TEMPLATE CHANGES
-        source_file_name = "Blank Template copy - final.pdf"
+        #source_file_name = "Blank Template copy - final.pdf"
         output_file_name =  filename + ".pdf"
 
-        #build full paths
-        source_file = document_dir / source_file_name
-        output_file = document_dir / output_file_name
+        # #build full paths
+        # source_file = document_dir / source_file_name
+        # output_file = document_dir / output_file_name
 
         ##filling out item details##
-        doc = fitz.open(source_file)
+        #doc = fitz.open(source_file)
+        doc = fitz.open(template_path)
 
         #collect items from excel sheet
         product_description = []
@@ -257,6 +257,10 @@ def fill_out_US_shipping_invoices(excel_file_path,folder_path):
                 
                 #widget_counter += 1
 
-        doc.save(output_file)
+        #doc.save(output_file)
+        pdf_bytes = doc.write()
+        invoices.append((output_file_name, pdf_bytes))
+
+    return invoices
 
     print("finished making invoices")
