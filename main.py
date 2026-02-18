@@ -22,15 +22,15 @@ def fill_out_US_shipping_invoices(uploaded_excel):
 
         def shipping_details(): #dictionary of shipping details to be entred in fields
             return {
-        '13': name,
+        '13': name.replace("Customer Name: ", ""),
         '14': address,
         '15': city,
         '16': postalcode,
-        '26': invoice
+        '26': invoice.replace("Ext. Ref: ", "")
             }
 
         #name of each filled out invoice form
-        output_file_name =  filename + ".pdf"
+        output_file_name =  filename.replace("Ref: ", "") + ".pdf"
 
         ##filling out item details##
         doc = fitz.open(template_path)
