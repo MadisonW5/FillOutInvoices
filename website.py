@@ -21,4 +21,4 @@ if uploaded_excel and st.button("Fill out Invoices"):
 
     st.header("Invoices Complete")
 
-    st.download_button("Download Filled Invoices", data=zip_buffer, file_name="invoices " + datetime.now().strftime("%m-%d-%Y") + ".zip", mime="application/zip")
+    st.download_button("Download Filled Invoices", data=zip_buffer, file_name="US Customs Invoices " + datetime.now().strftime("%m-%d-%Y") + ".zip", mime="application/zip")
