@@ -7,8 +7,7 @@ def fill_out_US_shipping_invoices(uploaded_excel):
 
     template_path = Path("Blank Template copy - final.pdf")
     invoices = []
-    excel_path = uploaded_excel
-    xls = pd.ExcelFile(excel_path)
+    xls = pd.ExcelFile(uploaded_excel)
     
     for sheet in xls.sheet_names:
     #read everything as strings so nothing becomes NaN or floats
@@ -30,18 +29,10 @@ def fill_out_US_shipping_invoices(uploaded_excel):
         '26': invoice
             }
 
-        #EDIT FOR EACH NEW FOLDER MADE
-        #document_dir = Path(folder_path)
-        #EDIT IF THE FILE NAME OF YOUR BLANK TEMPLATE CHANGES
-        #source_file_name = "Blank Template copy - final.pdf"
+        #name of each filled out invoice form
         output_file_name =  filename + ".pdf"
 
-        # #build full paths
-        # source_file = document_dir / source_file_name
-        # output_file = document_dir / output_file_name
-
         ##filling out item details##
-        #doc = fitz.open(source_file)
         doc = fitz.open(template_path)
 
         #collect items from excel sheet
@@ -134,7 +125,6 @@ def fill_out_US_shipping_invoices(uploaded_excel):
 
                     data_idx += 1
 
-
         #another loop through the pages to add the description of goods
         data_idx = 0 #reset data index to start of list of descriptions
         widget_counter = 0 #reset widget counter to start of page
@@ -163,8 +153,6 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                     
                     if widget_counter > end_at:
                         break #go to next page after finishing the items on the first page
-
-                    #widgets = list(page.widgets())
 
                     if widgets[widget_counter].field_type == fitz.PDF_WIDGET_TYPE_TEXT:
                         
@@ -262,5 +250,3 @@ def fill_out_US_shipping_invoices(uploaded_excel):
         invoices.append((output_file_name, pdf_bytes))
 
     return invoices
-
-    print("finished making invoices")
