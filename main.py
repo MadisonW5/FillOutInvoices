@@ -245,7 +245,6 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                 
                 #widget_counter += 1
 
-        #doc.save(output_file)
         pdf_bytes = doc.write()
         invoices.append((output_file_name, pdf_bytes))
 
