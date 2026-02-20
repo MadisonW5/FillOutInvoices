@@ -14,7 +14,12 @@ def fill_out_US_shipping_invoices(uploaded_excel):
         df_raw = pd.read_excel(xls, sheet_name=sheet, header=None, dtype=str, keep_default_na=False, engine="openpyxl")
         #shipping details grabbed from the excel sheet
         filename = df_raw.iat[1, 4]
+
         name = df_raw.iat[1, 2]
+        if "Greenhouse Juice Company USA" in name:
+            name = df_raw.iat[2, 4]
+            name = name.replace("Ship to company: ","")
+
         invoice = df_raw.iat[1, 7]
         address = df_raw.iat[3, 2]
         city = df_raw.iat[4, 2]
