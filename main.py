@@ -61,13 +61,13 @@ def fill_out_US_shipping_invoices(uploaded_excel):
             tariff_number.append(str(df_raw.iat[7+i, 5]))
 
         for i in range(num_items):
-            quantity.append(float(df_raw.iat[7+i, 6]))
+            quantity.append(float(df_raw.iat[7+i, 6].replace(",", "")))
 
         for i in range(num_items):
-            weight.append(float(df_raw.iat[7+i, 7]))
+            weight.append(float(df_raw.iat[7+i, 7].replace(",", "")))
 
         for i in range(num_items):
-            amount.append(float(df_raw.iat[7+i, 9]))
+            amount.append(float(df_raw.iat[7+i, 9].replace(",", "")))
 
     #loop to add shipping details
         data_idx = 0 #number to track index in lists of data
