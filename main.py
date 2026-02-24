@@ -236,13 +236,13 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                 widgets[38].field_value = ""
                 widgets[38].update() #total amount field (empty bc only if freight included)
                 
-                widgets[127].field_value = str(sum(weight))
+                widgets[127].field_value = str(round(sum(weight),1))
                 widgets[127].update() #total weight field
 
-                widgets[128].field_value = str(sum(quantity))
+                widgets[128].field_value = str(round(sum(quantity),1))
                 widgets[128].update() #total quantity field
 
-                widgets[129].field_value = str(sum(amount))
+                widgets[129].field_value = str(round(sum(amount),2))
                 widgets[129].update() #total amount field
 
                 widgets[131].field_value = "02/17/2026"#datetime.now().strftime("%m/%d/%Y")
