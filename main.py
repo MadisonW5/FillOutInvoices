@@ -245,10 +245,9 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                 widgets[129].field_value = str(round(sum(amount),2))
                 widgets[129].update() #total amount field
 
-                widgets[131].field_value = "02/17/2026"#datetime.now().strftime("%m/%d/%Y")
+                widgets[131].field_value = datetime.now().strftime("%m/%d/%Y")
                 widgets[131].update() #date field
                 
-                #widget_counter += 1
 
         pdf_bytes = doc.write()
         invoices.append((output_file_name, pdf_bytes))
