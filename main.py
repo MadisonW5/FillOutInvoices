@@ -35,7 +35,7 @@ def fill_out_US_shipping_invoices(uploaded_excel):
             }
 
         #name of each filled out invoice form
-        output_file_name =  filename.replace("Ref: ", "") + ".pdf"
+        output_file_name =  filename.replace("Ext. Ref: ", "") + ".pdf"
 
         ##filling out item details##
         doc = fitz.open(template_path)
