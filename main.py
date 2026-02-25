@@ -13,7 +13,7 @@ def fill_out_US_shipping_invoices(uploaded_excel):
     #read everything as strings so nothing becomes NaN or floats
         df_raw = pd.read_excel(xls, sheet_name=sheet, header=None, dtype=str, keep_default_na=False, engine="openpyxl")
         #shipping details grabbed from the excel sheet
-        filename = df_raw.iat[1, 4]
+        filename = df_raw.iat[1, 7]#df_raw.iat[1, 4]
 
         name = df_raw.iat[1, 2]
         if "Greenhouse Juice Company USA" in name:
