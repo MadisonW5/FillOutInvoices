@@ -14,6 +14,9 @@ if uploaded_excel and st.button("Fill out Invoices"):
     with zipfile.ZipFile(zip_buffer,"w") as zip_file:
         invoices = main.fill_out_US_shipping_invoices(uploaded_excel)
 
+        if invoices == True:
+            st.header("You forgot to delete an empty page in the Excel sheet. Refresh the website and try again.")
+
         for filename, pdf_bytes in invoices:
             zip_file.writestr(filename, pdf_bytes)
 
