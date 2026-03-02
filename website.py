@@ -21,7 +21,7 @@ if uploaded_excel and st.button("Fill out Invoices"):
             for filename, pdf_bytes in invoices:
                 zip_file.writestr(filename, pdf_bytes)
 
-    if type(invoices) is bool:
+    if type(invoices) is not bool:
         zip_buffer.seek(0)
 
         st.header("Invoices Complete")
