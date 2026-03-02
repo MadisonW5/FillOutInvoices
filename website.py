@@ -15,7 +15,7 @@ if uploaded_excel and st.button("Fill out Invoices"):
         invoices = main.fill_out_US_shipping_invoices(uploaded_excel)
 
         if invoices == True:
-            st.header("You forgot to delete an empty page in the Excel sheet. Refresh the website and try again.")
+            st.header("You forgot to delete an empty page in the Excel sheet. Edit the sheet and try again.")
 
         else:
             for filename, pdf_bytes in invoices:
