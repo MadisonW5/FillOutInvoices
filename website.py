@@ -17,8 +17,9 @@ if uploaded_excel and st.button("Fill out Invoices"):
         if invoices == True:
             st.header("You forgot to delete an empty page in the Excel sheet. Refresh the website and try again.")
 
-        for filename, pdf_bytes in invoices:
-            zip_file.writestr(filename, pdf_bytes)
+        else:
+            for filename, pdf_bytes in invoices:
+                zip_file.writestr(filename, pdf_bytes)
 
     zip_buffer.seek(0)
 
