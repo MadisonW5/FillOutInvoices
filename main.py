@@ -52,7 +52,7 @@ def fill_out_US_shipping_invoices(uploaded_excel):
 
             item_row = 7
             num_items = 0 #count number of items to be entered
-            while df_raw.iat[item_row, 1].strip() != '':
+            while pd.notna(df_raw.iat[item_row, 1]) and df_raw.iat[item_row, 1].strip() != '':
                 product_description.append(str(df_raw.iat[item_row, 1]) + ' ' + str(df_raw.iat[item_row, 2]))
                 product_name.append(str(df_raw.iat[item_row, 2]))
                 item_row += 1
