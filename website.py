@@ -18,7 +18,7 @@ if uploaded_excel and st.button("Fill out Invoices"):
             st.header("You forgot to delete an empty page in the Excel sheet. Edit the sheet and try again.")
 
         elif type(invoices) is bool and invoices != True:
-            st.header("Check that quantity, weight, and amount numbers are stored as numbers in Excel file")
+            st.header("Make sure quantity, weight, and amount values are formatted as numbers in Excel file and ensure the formatting of the sheet hasn't changed. (refer to SOP)")
 
         else:
             for filename, pdf_bytes in invoices:
