@@ -221,7 +221,11 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                                 widgets[widget_counter].update()
 
                             elif "1.26 L" in str(product_name[data_idx]):
-                                widgets[widget_counter].field_value = "1.26 L bag , 6 bags per box," + " " + str(int(quantity[data_idx])) + " boxes"
+                                widgets[widget_counter].field_value = "1.26 L bag, 6 bags per box," + " " + str(int(quantity[data_idx])) + " boxes"
+                                widgets[widget_counter].update()
+
+                            elif "6 x" in str(product_name[data_idx]) and "473 mL" in str(product_name[data_idx]):
+                                widgets[widget_counter].field_value = "473 mL bottles, 6 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
                                 widgets[widget_counter].update()
 
                         data_idx += 1
