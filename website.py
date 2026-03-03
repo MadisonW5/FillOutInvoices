@@ -17,7 +17,7 @@ if uploaded_excel and st.button("Fill out Invoices"):
         if type(invoices) is bool and invoices == True:
             st.header("You forgot to delete an empty page in the Excel sheet. Edit the sheet and try again.")
 
-        elif type(invoices) is bool and invoices == True:
+        elif type(invoices) is bool and invoices != True:
             st.header("Check that quantity, weight, and amount numbers are stored as numbers in Excel file")
 
         else:
