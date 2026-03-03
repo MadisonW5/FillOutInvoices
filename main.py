@@ -62,9 +62,11 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                     weight_entry = float(df_raw.iat[item_row, 7].replace(",", ""))
                     amount_entry = float(df_raw.iat[item_row, 9].replace(",", ""))
                 except(ValueError, TypeError):
-                    quantity_entry = 0
-                    weight_entry = 0
-                    amount_entry = 0
+                    num_problem = False
+                    return num_problem
+                    # quantity_entry = 0
+                    # weight_entry = 0
+                    # amount_entry = 0
 
                 quantity.append(quantity_entry)
                 weight.append(weight_entry)
@@ -205,8 +207,12 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                         if widgets[widget_counter].field_type == fitz.PDF_WIDGET_TYPE_TEXT:
                             
                             if "6 x Gable Top" in str(product_name[data_idx]):
-                                widgets[widget_counter].field_value = "900 mL bottles, 6 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
-                                widgets[widget_counter].update()
+                                if "900 mL" in str(product_name[data_idx]):
+                                    widgets[widget_counter].field_value = "900 mL bottles, 6 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
+                                    widgets[widget_counter].update()
+                                elif "946 mL" in str(product_name[data_idx]):
+                                    widgets[widget_counter].field_value = "946 mL bottles, 6 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
+                                    widgets[widget_counter].update()
 
                             elif "2 x 6" in str(product_name[data_idx]) or "12 x" in str(product_name[data_idx]):
                                 widgets[widget_counter].field_value = "60mL bottles, 12 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
