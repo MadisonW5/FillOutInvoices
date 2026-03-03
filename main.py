@@ -51,25 +51,26 @@ def fill_out_US_shipping_invoices(uploaded_excel):
             amount = []
 
             item_row = 7
-            num_items = 0 #count number of items to be entered
             while pd.notna(df_raw.iat[item_row, 1]) and df_raw.iat[item_row, 1].strip() != '':
                 product_description.append(str(df_raw.iat[item_row, 1]) + ' ' + str(df_raw.iat[item_row, 2]))
                 product_name.append(str(df_raw.iat[item_row, 2]))
+
+                tariff_number.append(str(df_raw.iat[item_row, 5]))
+                
+                try:
+                    quantity_entry = float(df_raw.iat[item_row, 6].replace(",", ""))
+                    weight_entry = float(df_raw.iat[item_row, 7].replace(",", ""))
+                    amount_entry = float(df_raw.iat[item_row, 9].replace(",", ""))
+                except(ValueError, TypeError):
+                    quantity.append(0)
+                    weight.append(0)
+                    amount.append(0)
+
+                quantity.append(quantity_entry)
+                weight.append(weight_entry)
+                amount.append(amount_entry)                    
+
                 item_row += 1
-
-            num_items = len(product_description)
-
-            for i in range(num_items):
-                tariff_number.append(str(df_raw.iat[7+i, 5]))
-
-            for i in range(num_items):
-                quantity.append(float(df_raw.iat[7+i, 6].replace(",", "")))
-
-            for i in range(num_items):
-                weight.append(float(df_raw.iat[7+i, 7].replace(",", "")))
-
-            for i in range(num_items):
-                amount.append(float(df_raw.iat[7+i, 9].replace(",", "")))
 
         #loop to add shipping details
             data_idx = 0 #number to track index in lists of data
