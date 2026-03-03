@@ -62,9 +62,9 @@ def fill_out_US_shipping_invoices(uploaded_excel):
                     weight_entry = float(df_raw.iat[item_row, 7].replace(",", ""))
                     amount_entry = float(df_raw.iat[item_row, 9].replace(",", ""))
                 except(ValueError, TypeError):
-                    quantity.append(0)
-                    weight.append(0)
-                    amount.append(0)
+                    quantity_entry = 0
+                    weight_entry = 0
+                    amount_entry = 0
 
                 quantity.append(quantity_entry)
                 weight.append(weight_entry)
