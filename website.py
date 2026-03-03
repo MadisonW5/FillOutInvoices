@@ -14,8 +14,11 @@ if uploaded_excel and st.button("Fill out Invoices"):
     with zipfile.ZipFile(zip_buffer,"w") as zip_file:
         invoices = main.fill_out_US_shipping_invoices(uploaded_excel)
 
-        if type(invoices) is bool:
+        if type(invoices) is bool and invoices == True:
             st.header("You forgot to delete an empty page in the Excel sheet. Edit the sheet and try again.")
+
+        elif type(invoices) is bool and invoices == True:
+            st.header("Check that quantity, weight, and amount numbers are stored as numbers in Excel file")
 
         else:
             for filename, pdf_bytes in invoices:
