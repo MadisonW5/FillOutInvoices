@@ -2,9 +2,9 @@
 from pathlib import Path
 import fitz  # PyMuPDF
 
-document_dir = Path(r"C:\Users\GreenhouseProduction\Downloads\us customs test")
-pdf_in  = document_dir / "Blank Template copy - final.pdf"
-pdf_out = document_dir / "output.pdf"
+document_dir = Path(r"C:\Users\GreenhouseProduction\Downloads\Blank Template copy - final (1).pdf")
+pdf_in  = document_dir / "Blank Template copy - final (1).pdf"
+pdf_out = document_dir / "output (NEW).pdf"
 
 with fitz.open(pdf_in) as doc:
     target_page = doc[0]

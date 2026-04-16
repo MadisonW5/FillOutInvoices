@@ -17,7 +17,7 @@ def fill_out_US_shipping_invoices(uploaded_excel):
             #shipping details grabbed from the excel sheet
             filename = df_raw.iat[1, 7]#df_raw.iat[1, 4]
 
-            name = df_raw.iat[1, 2]
+            name = df_raw.iat[1, 2] #[row, column]
             if "Greenhouse Juice Company USA" in name:
                 name = df_raw.iat[2, 4]
                 name = name.replace("Ship to company: ","")
@@ -216,6 +216,10 @@ def fill_out_US_shipping_invoices(uploaded_excel):
 
                             elif "2 x 6" in str(product_name[data_idx]) or "12 x" in str(product_name[data_idx]):
                                 widgets[widget_counter].field_value = "60mL bottles, 12 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
+                                widgets[widget_counter].update()
+
+                            elif "10 x 4" in str(product_name[data_idx]) and "60 mL" in str(product_name[data_idx]):
+                                widgets[widget_counter].field_value = "60mL bottles, 40 bottles per box," + " " + str(int(quantity[data_idx])) + " boxes"
                                 widgets[widget_counter].update()
 
                             elif "6 x 4" in str(product_name[data_idx]) or "24 x" in str(product_name[data_idx]) or "4 x 60 mL" in str(product_name[data_idx]):
